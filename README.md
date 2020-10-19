@@ -54,7 +54,7 @@ try {
         ->addContent('en', 'Yay, my Silverstripe app created this')
         ->addData('myVar', 'foo');
     
-    $response = OneSignalService::singleton()->createNotification();
+    $response = OneSignalService::singleton()->createNotification($notification);
     if (!$response->isError()) {
         echo 'Notification with id ' . $response->getId() . ' was sent to ' . $response->getRecipientsCount() . ' recipients';
     }
