@@ -48,4 +48,19 @@ class OneSignalService {
 
         $this->oneSignalClient = new OneSignal($config, $httpClient, $requestFactory, $streamFactory);
     }
+
+    /**
+     * Creates and sends a notification.
+     *
+     * @see https://documentation.onesignal.com/reference/create-notification#create-notification
+     *
+     * @param Notification $notification
+     *
+     * @return NotificationResponse
+     */
+    public function createNotification(Notification $notification) {
+        $rawResponsePayload = $this->oneSignalClient->notifications()->add($notification->toArray());
+
+        return new NotificationResponse($rawResponsePayload);
+    }
 }
