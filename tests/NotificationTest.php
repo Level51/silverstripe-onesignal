@@ -16,8 +16,19 @@ class NotificationTest extends SapphireTest {
         $this->assertEquals([
             'included_segments' => [Notification::DEFAULT_SEGMENT],
             'contents'          => [],
+            'headings'          => [],
             'data'              => []
         ], $notification->toArray());
+    }
+
+    public function testUnsupportedLocale() {
+        $locale = 'unsupportedlocale';
+        $content = 'Test Content 1';
+
+        $this->expectException(OneSignalException::class);
+        $this->expectExceptionMessage("'$locale' is not a supported locale.");
+
+        Notification::create()->addContent($locale, $content);
     }
 
     public function testAddContent() {
@@ -28,6 +39,16 @@ class NotificationTest extends SapphireTest {
         $this->assertEquals([
             $locale => $content
         ], $payload['contents']);
+    }
+
+    public function testAddHeading() {
+        $locale = 'de';
+        $subject = 'Test Heading 1';
+        $payload = Notification::create()->addHeading($locale, $subject)->toArray();
+
+        $this->assertEquals([
+            $locale => $subject
+        ], $payload['headings']);
     }
 
     public function testAddData() {
