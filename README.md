@@ -1,5 +1,8 @@
 # Silverstripe OneSignal
 
+[![Build Status](https://travis-ci.com/Level51/silverstripe-onesignal.svg?branch=develop)](https://travis-ci.com/Level51/silverstripe-onesignal)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 Silverstripe module wrapper for OneSignal PHP SDK.
 
 Provides a class `OneSignalService` for creating/sending notifications.
