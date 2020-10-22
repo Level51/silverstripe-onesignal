@@ -2,7 +2,8 @@
 
 namespace Level51\OneSignal;
 
-class Notification {
+class Notification
+{
 
     const DEFAULT_SEGMENT = 'All';
 
@@ -60,18 +61,21 @@ class Notification {
 
     private $data;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->segments = [self::DEFAULT_SEGMENT];
         $this->contents = [];
         $this->headings = [];
         $this->data = [];
     }
 
-    public static function create() {
+    public static function create()
+    {
         return new self();
     }
 
-    private function isSupportedLocale($locale) {
+    private function isSupportedLocale($locale)
+    {
         return in_array($locale, self::SUPPORTED_LOCALES);
     }
 
@@ -82,7 +86,8 @@ class Notification {
      * @return $this
      * @throws OneSignalException
      */
-    public function addContent($locale, $content) {
+    public function addContent($locale, $content)
+    {
         if (!$this->isSupportedLocale($locale)) {
             throw new OneSignalException("'$locale' is not a supported locale.");
         }
@@ -99,7 +104,8 @@ class Notification {
      * @return $this
      * @throws OneSignalException
      */
-    public function addHeading($locale, $heading) {
+    public function addHeading($locale, $heading)
+    {
         if (!$this->isSupportedLocale($locale)) {
             throw new OneSignalException("'$locale' is not a supported locale.");
         }
@@ -109,19 +115,22 @@ class Notification {
         return $this;
     }
 
-    public function addData($key, $value) {
+    public function addData($key, $value)
+    {
         $this->data[$key] = $value;
 
         return $this;
     }
 
-    public function forSegment($segment) {
+    public function forSegment($segment)
+    {
         $this->segments = [$segment];
 
         return $this;
     }
 
-    public function toArray() {
+    public function toArray()
+    {
         return [
             'included_segments' => $this->segments,
             'contents'          => $this->contents,

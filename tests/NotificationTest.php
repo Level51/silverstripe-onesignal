@@ -4,13 +4,16 @@ namespace Level51\OneSignal;
 
 use SilverStripe\Dev\SapphireTest;
 
-class NotificationTest extends SapphireTest {
+class NotificationTest extends SapphireTest
+{
 
-    public function testCreate() {
+    public function testCreate()
+    {
         $this->assertEquals(Notification::class, get_class(Notification::create()));
     }
 
-    public function testToArray() {
+    public function testToArray()
+    {
         $notification = Notification::create();
 
         $this->assertEquals([
@@ -21,7 +24,8 @@ class NotificationTest extends SapphireTest {
         ], $notification->toArray());
     }
 
-    public function testUnsupportedLocale() {
+    public function testUnsupportedLocale()
+    {
         $locale = 'unsupportedlocale';
         $content = 'Test Content 1';
 
@@ -31,7 +35,8 @@ class NotificationTest extends SapphireTest {
         Notification::create()->addContent($locale, $content);
     }
 
-    public function testAddContent() {
+    public function testAddContent()
+    {
         $locale = 'de';
         $content = 'Test Content 1';
         $payload = Notification::create()->addContent($locale, $content)->toArray();
@@ -41,7 +46,8 @@ class NotificationTest extends SapphireTest {
         ], $payload['contents']);
     }
 
-    public function testAddHeading() {
+    public function testAddHeading()
+    {
         $locale = 'de';
         $subject = 'Test Heading 1';
         $payload = Notification::create()->addHeading($locale, $subject)->toArray();
@@ -51,7 +57,8 @@ class NotificationTest extends SapphireTest {
         ], $payload['headings']);
     }
 
-    public function testAddData() {
+    public function testAddData()
+    {
         $key1 = 'testkey1';
         $val1 = 'Test Value 1';
         $key2 = 'testkey2';
@@ -68,7 +75,8 @@ class NotificationTest extends SapphireTest {
         ], $payload['data']);
     }
 
-    public function testForSegment() {
+    public function testForSegment()
+    {
         $testSegment = 'Test Segment';
         $notification = Notification::create();
 

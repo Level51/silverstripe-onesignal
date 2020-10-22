@@ -4,7 +4,8 @@ namespace Level51\OneSignal;
 
 use SilverStripe\Dev\SapphireTest;
 
-class NotificationResponseTest extends SapphireTest {
+class NotificationResponseTest extends SapphireTest
+{
 
     /**
      * @var array
@@ -16,7 +17,8 @@ class NotificationResponseTest extends SapphireTest {
         'external_id' => null
     ];
 
-    public function testConstruct() {
+    public function testConstruct()
+    {
         $raw = [];
         $response = new NotificationResponse($raw);
 
@@ -24,7 +26,8 @@ class NotificationResponseTest extends SapphireTest {
         $this->assertEquals($raw, $response->getRawResponsePayload());
     }
 
-    public function testIsError() {
+    public function testIsError()
+    {
         $raw = [
             'errors' => [
                 'contents must be key/value collections by language code'
@@ -35,26 +38,30 @@ class NotificationResponseTest extends SapphireTest {
         $this->assertTrue($response->isError());
     }
 
-    public function testId() {
+    public function testId()
+    {
         $response = new NotificationResponse($this->ok_payload);
 
         $this->assertEquals($this->ok_payload['id'], $response->getId());
     }
 
-    public function testIdIsNull() {
+    public function testIdIsNull()
+    {
         $raw = [];
         $response = new NotificationResponse($raw);
 
         $this->assertEquals(null, $response->getId());
     }
 
-    public function testRecipientsCount() {
+    public function testRecipientsCount()
+    {
         $response = new NotificationResponse($this->ok_payload);
 
         $this->assertEquals($this->ok_payload['recipients'], $response->getRecipientsCount());
     }
 
-    public function testRecipientsCount0() {
+    public function testRecipientsCount0()
+    {
         $response = new NotificationResponse([]);
 
         $this->assertEquals(null, $response->getRecipientsCount());

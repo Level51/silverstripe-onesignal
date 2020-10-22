@@ -15,7 +15,8 @@ use Symfony\Component\HttpClient\Psr18Client;
  *
  * @see https://github.com/norkunas/onesignal-php-api
  */
-class OneSignalService {
+class OneSignalService
+{
     use Injectable;
     use Configurable;
 
@@ -29,9 +30,12 @@ class OneSignalService {
      *
      * @throws OneSignalException
      */
-    public function __construct() {
+    public function __construct()
+    {
         if (!$appAuthKey = Environment::getEnv('ONESIGNAL_APP_AUTH_KEY')) {
-            throw new OneSignalException('Missing OneSignal app auth key. Must be an env var "ONESIGNAL_APP_AUTH_KEY".');
+            throw new OneSignalException(
+                'Missing OneSignal app auth key. Must be an env var "ONESIGNAL_APP_AUTH_KEY".'
+            );
         }
 
         if (!$authKey = Environment::getEnv('ONESIGNAL_AUTH_KEY')) {
@@ -58,7 +62,8 @@ class OneSignalService {
      *
      * @return NotificationResponse
      */
-    public function createNotification(Notification $notification) {
+    public function createNotification(Notification $notification)
+    {
         $rawResponsePayload = $this->oneSignalClient->notifications()->add($notification->toArray());
 
         return new NotificationResponse($rawResponsePayload);

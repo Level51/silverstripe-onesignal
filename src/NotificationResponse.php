@@ -9,7 +9,8 @@ namespace Level51\OneSignal;
  *
  * @package Level51\OneSignal
  */
-class NotificationResponse {
+class NotificationResponse
+{
 
     const ACTION_CREATE = 'create';
 
@@ -29,7 +30,8 @@ class NotificationResponse {
      * @param array       $raw Raw response payload
      * @param string|null $action
      */
-    public function __construct(array $raw, $action = null) {
+    public function __construct(array $raw, $action = null)
+    {
         if ($action === null) {
             $action = self::ACTION_CREATE;
         }
@@ -38,23 +40,28 @@ class NotificationResponse {
         $this->rawResponsePayload = $raw;
     }
 
-    public function isError() {
+    public function isError()
+    {
         return !empty($this->rawResponsePayload['errors']);
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->rawResponsePayload['id'] ?? null;
     }
 
-    public function getRecipientsCount() {
+    public function getRecipientsCount()
+    {
         return $this->rawResponsePayload['recipients'] ?? null;
     }
 
-    public function getAction() {
+    public function getAction()
+    {
         return $this->action;
     }
 
-    public function getRawResponsePayload() {
+    public function getRawResponsePayload()
+    {
         return $this->rawResponsePayload;
     }
 }

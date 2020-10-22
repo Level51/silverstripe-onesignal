@@ -2,4 +2,8 @@
 
 namespace Level51\OneSignal;
 
-class OneSignalException extends \Exception {}
+use Exception;
+
+class OneSignalException extends Exception
+{
+}

@@ -13,7 +13,7 @@ Use convenience classes `Notification` and `NotificationResponse` for handling r
 - Silverstripe ^4.0
 - OneSignal PHP SDK `norkunas/onesignal-php-api`
 - PSR-18 HTTP client (e.g. `symfony/http-client`)
-- PSR-17 HTTP factories (e.g. `nyholm/psr7`) 
+- PSR-17 HTTP factories (e.g. `nyholm/psr7`)
 
 ## Installation
 
@@ -26,6 +26,8 @@ composer require level51/silverstripe-onesignal
 The module is based on the [OneSignal API for PHP](https://github.com/norkunas/onesignal-php-api).
 
 At the moment, only the Notifications API is being used.
+
+This project adheres PSR-2.
 
 ### Config
 
@@ -62,7 +64,7 @@ try {
         ->addHeading('en', 'My first notification')
         ->addContent('en', 'Yay, my Silverstripe app created this')
         ->addData('myVar', 'foo');
-    
+
     $response = OneSignalService::singleton()->createNotification($notification);
     if (!$response->isError()) {
         echo 'Notification with id ' . $response->getId() . ' was sent to ' . $response->getRecipientsCount() . ' recipients';
