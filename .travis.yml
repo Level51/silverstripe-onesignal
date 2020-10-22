@@ -1,0 +1,33 @@
+language: php
+
+dist: trusty
+
+php: 7.3
+
+env:
+  global:
+    - COMPOSER_ROOT_VERSION="2.1.x-dev"
+    - DB=MYSQL
+    - SS_DATABASE_USERNAME="root"
+    - SS_DATABASE_PASSWORD=""
+
+services: mysql
+
+jobs:
+  include:
+    - env: CORE_RELEASE=4.6
+    - env: CORE_RELEASE=4.5
+    - env: CORE_RELEASE=4.4
+    - env: CORE_RELEASE=4.3
+    - env: CORE_RELEASE=4.2
+    - env: CORE_RELEASE=4.1
+
+before_script:
+  - phpenv rehash
+  - composer validate
+  - git clone git://github.com/silverstripe-labs/silverstripe-travis-support.git ~/travis-support
+  - php ~/travis-support/travis_setup.php --source `pwd` --target ~/builds/ss
+  - cd ~/builds/ss
+
+script:
+  - vendor/bin/phpunit vendor/level51/silverstripe-onesignal/tests/
