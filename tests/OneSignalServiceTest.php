@@ -8,6 +8,14 @@ use SilverStripe\Dev\SapphireTest;
 
 class OneSignalServiceTest extends SapphireTest {
 
+    protected function setUp() {
+        parent::setUp();
+
+        Environment::setEnv('ONESIGNAL_APP_AUTH_KEY', 'foo');
+        Environment::setEnv('ONESIGNAL_AUTH_KEY', 'bar');
+        Config::forClass(OneSignalService::class)->set('app_id', 'xyz');
+    }
+
     public function testMissingEnv1() {
         $this->expectException(OneSignalException::class);
 
