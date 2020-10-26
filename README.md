@@ -1,6 +1,7 @@
 # Silverstripe OneSignal
 
 [![Build Status](https://travis-ci.com/Level51/silverstripe-onesignal.svg?branch=develop)](https://travis-ci.com/Level51/silverstripe-onesignal)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Level51/silverstripe-onesignal/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/Level51/silverstripe-onesignal/?branch=develop)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Silverstripe module wrapper for OneSignal PHP SDK.
