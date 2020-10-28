@@ -24,7 +24,7 @@ class NotificationTest extends SapphireTest
         ], $notification->toArray());
     }
 
-    public function testUnsupportedLocale()
+    public function testUnsupportedContentLocale()
     {
         $locale = 'unsupportedlocale';
         $content = 'Test Content 1';
@@ -34,6 +34,17 @@ class NotificationTest extends SapphireTest
 
         Notification::create()->addContent($locale, $content);
     }
+
+  public function testUnsupportedHeadingLocale()
+  {
+    $locale = 'unsupportedlocaleXYZ';
+    $content = 'Test Heading 1';
+
+    $this->expectException(OneSignalException::class);
+    $this->expectExceptionMessage("'$locale' is not a supported locale.");
+
+    Notification::create()->addHeading($locale, $content);
+  }
 
     public function testAddContent()
     {
