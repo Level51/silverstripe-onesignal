@@ -30,4 +30,7 @@ before_script:
   - cd ~/builds/ss
 
 script:
-  - vendor/bin/phpunit vendor/level51/silverstripe-onesignal/tests/
+  - vendor/bin/phpunit vendor/level51/silverstripe-onesignal/tests/ --coverage-clover coverage.xml
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
