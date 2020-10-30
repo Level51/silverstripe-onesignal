@@ -33,4 +33,4 @@ script:
   - vendor/bin/phpunit vendor/level51/silverstripe-onesignal/tests/ --coverage-clover coverage.xml --configuration vendor/level51/silverstripe-onesignal/phpunit.xml.dist
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -v -f coverage.xml
+  - bash <(curl -s https://codecov.io/bash)
