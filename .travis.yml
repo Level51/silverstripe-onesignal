@@ -33,5 +33,5 @@ script:
   - vendor/bin/phpunit vendor/level51/silverstripe-onesignal/tests/ --coverage-clover coverage.xml --configuration vendor/level51/silverstripe-onesignal/phpunit.xml.dist
 
 after_success:
-  - wget https://scrutinizer-ci.com/ocular.phar && cd vendor/level51/silverstripe-onesignal && php ocular.phar code-coverage:upload --format=php-clover ../../../coverage.xml
+  - cd vendor/level51/silverstripe-onesignal && wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover ../../../coverage.xml
   - bash <(curl -s https://codecov.io/bash)
