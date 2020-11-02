@@ -1,5 +1,10 @@
 # Silverstripe OneSignal
 
+[![Build Status](https://travis-ci.com/Level51/silverstripe-onesignal.svg?branch=develop)](https://travis-ci.com/Level51/silverstripe-onesignal)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Level51/silverstripe-onesignal/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/Level51/silverstripe-onesignal/?branch=develop)
+[![Code Coverage](https://scrutinizer-ci.com/g/Level51/silverstripe-onesignal/badges/coverage.png?b=develop)](https://scrutinizer-ci.com/g/Level51/silverstripe-onesignal/?branch=develop)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 Silverstripe module wrapper for OneSignal PHP SDK.
 
 Provides a class `OneSignalService` for creating/sending notifications.
@@ -10,7 +15,7 @@ Use convenience classes `Notification` and `NotificationResponse` for handling r
 - Silverstripe ^4.0
 - OneSignal PHP SDK `norkunas/onesignal-php-api`
 - PSR-18 HTTP client (e.g. `symfony/http-client`)
-- PSR-17 HTTP factories (e.g. `nyholm/psr7`) 
+- PSR-17 HTTP factories (e.g. `nyholm/psr7`)
 
 ## Installation
 
@@ -18,12 +23,20 @@ Use convenience classes `Notification` and `NotificationResponse` for handling r
 composer require level51/silverstripe-onesignal
 ```
 
-## Config
+## Documentation
+
+The module is based on the [OneSignal API for PHP](https://github.com/norkunas/onesignal-php-api).
+
+At the moment, only the Notifications API is being used.
+
+This project adheres PSR-2.
+
+### Config
 
 Two env vars and one config value are mandatory when initializing `OneSignalService`.
 `OneSignalException` is thrown if not configured properly.
 
-### Environment
+#### Environment
 
 Define the following vars in your `.env` file.
 
@@ -32,7 +45,7 @@ Define the following vars in your `.env` file.
 
 Since the auth keys are sensitive data, it's recommended to not have them included in any VCS.
 
-### Config API
+#### Config API
 
 - `app_id`
 
@@ -43,7 +56,7 @@ Level51\OneSignal\OneSignalService:
   app_id: 'xxxxxx-0000-xxxx-0000-xxxxxxxxxx'
 ```
 
-## Usage
+### Usage
 
 Send a simple notification.
 
@@ -53,7 +66,7 @@ try {
         ->addHeading('en', 'My first notification')
         ->addContent('en', 'Yay, my Silverstripe app created this')
         ->addData('myVar', 'foo');
-    
+
     $response = OneSignalService::singleton()->createNotification($notification);
     if (!$response->isError()) {
         echo 'Notification with id ' . $response->getId() . ' was sent to ' . $response->getRecipientsCount() . ' recipients';
