@@ -1,7 +1,7 @@
 {
     "name": "level51/silverstripe-onesignal",
-    "version": "0.1.0",
-    "time": "2020-10-16",
+    "version": "1.0.0",
+    "time": "2020-11-02",
     "description": "Silverstripe module wrapper for OneSignal PHP SDK",
     "keywords": [
         "silverstripe",
